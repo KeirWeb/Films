@@ -1,16 +1,9 @@
 import { createStore } from "vuex";
 
 export default createStore({
-  state: {
-    listFilms: [],
-  },
+  state: {},
   getters: {},
   mutations: {},
   actions: {},
   modules: {},
-});
-
-new Vue({
-  el: "#app",
-  store: store,
 });

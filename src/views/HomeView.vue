@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div class="container">
     <body class="body">
       <div class="filter"></div>
@@ -68,11 +68,6 @@ img {
 }
 .container {
   padding: 20px;
-  background-image: url(@/assets/bodyBg.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  min-height: 1000px;
 }
 .header {
   display: flex;
@@ -141,13 +136,4 @@ img {
 
 .footer {
 }
-</style> -->
-<template>
-  <div>Hello</div>
-</template>
-
-<script>
-export default {};
-</script>
-
-<style></style>
+</style>

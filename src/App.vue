@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <component :is="layout" :filteredMovies="filteredMovies">
+    <component :is="layout">
       <router-view />
     </component>
   </div>
@@ -35,6 +35,11 @@ export default {
   box-sizing: border-box;
 }
 .app {
+  background-image: url(@/assets/bodyBg.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 1000px;
   color: white;
   font-family: "Open Sans", sans-serif;
 }

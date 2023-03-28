@@ -1,9 +1,10 @@
 <template>
   <div class="movies">
-    <div class="movies__item" v-for="(film, id) in listFilms" :key="id">
-      <router-link :to="`/film/&{film}`">
-        <h3 class="item__title">{{ film.nameRu }}</h3></router-link
-      >
+    <div class="movies__item" v-for="film in listFilms" :key="film.id">
+      <router-link :to="`/film/${film.id}`">
+        <h3 class="item__title">{{ film.nameRu }}</h3>
+      </router-link>
+
       <div class="item__body">
         <div class="item__poster">
           <img :src="film.posterUrlPreview" alt="" />

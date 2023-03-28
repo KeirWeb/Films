@@ -1,16 +1,14 @@
-import Vue from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
+
+import VueRouter from "vue-router";
+import router from "./router/router";
+
+import store from "./store";
 
 import axios from "axios";
 import VueAxios from "vue-axios";
 
-import VueRouter from "vue-router";
-import router from "./router/index";
+const app = createApp(App);
 
-Vue.use(VueAxios, axios).use(VueRouter).mount("#app");
-
-new Vue({
-  render: (h) => h(App),
-  el: "#app",
-  router,
-});
+app.use(VueRouter).use(VueAxios, axios).use(store).use(router).mount("#app");

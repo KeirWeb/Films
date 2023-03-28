@@ -1,9 +1,7 @@
-<!-- <template>
+<template>
   <div class="movies">
-    <div class="movies__item" v-for="(film, id) in listFilms" :key="id">
-      <router-link to="/film_view">
-        <h3 class="item__title">{{ film.nameRu }}</h3></router-link
-      >
+    <div class="movies__item">
+      <h3 class="item__title">{{ film.nameRu }}</h3>
       <div class="item__body">
         <div class="item__poster">
           <img :src="film.posterUrlPreview" alt="" />
@@ -41,15 +39,6 @@
       </div>
     </div>
   </div>
-</template>
-
-<script>
-export default {};
-</script>
-
-<style></style> -->
-<template>
-  <div>film{{ id }}</div>
 </template>
 
 <script>
