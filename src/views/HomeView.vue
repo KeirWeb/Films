@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <body class="body">
-      <div class="filter"></div>
+      <my-filter @filter="filter" />
       <my-card :listFilms="listFilms" />
     </body>
     <footer class="footer"></footer>
@@ -11,21 +11,27 @@
 <script>
 import axios from "axios";
 import MyCard from "@/components/MyCard.vue";
+import MyFilter from "@/components/MyFilter.vue";
 
 export default {
   components: {
     MyCard,
+    MyFilter,
   },
   data() {
     return {
       serchMovies: "",
       topFilms: [],
       serchFilms: [],
-      filterFilms: [],
+
       listFilms: [],
     };
   },
   methods: {
+    filter(filterFilms) {
+      console.log(filterFilms);
+      this.listFilms = filterFilms;
+    },
     serch() {
       axios
         .get(
@@ -40,7 +46,6 @@ export default {
         .then((response) => (this.listFilms = response.data.films));
     },
   },
-
   created() {
     axios
       .get(

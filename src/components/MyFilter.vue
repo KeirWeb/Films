@@ -1,13 +1,13 @@
 <template>
   <div class="filter">
-    <select name="Сортировка" id="" v-model="filters.order">
+    <select name="Сортировка" id="" v-model="order">
       <option disabled defaultSelected value="">Сортировка</option>
       <option value="">--</option>
       <option value=" RATING">Рейтинг</option>
       <option value="NUM_VOTE">По голосам</option>
       <option value="YEAR">По годам</option>
     </select>
-    <select name="Тип фильма" id="" v-model="filters.type">
+    <!-- <select name="Тип фильма" id="" v-model="filters.type">
       <option disabled defaultSelected value="">Тип фильма</option>
       <option value="">--</option>
       <option value="FILM">Фильмы</option>
@@ -27,28 +27,46 @@
     <label class="labelText">
       ключевое слово, которое встречается в названии фильма:
       <input type="text" name="keyword" v-model="filters.keyword" />
-    </label>
+    </label> -->
     <button @click="filter">Поиск</button>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      filters: [
-        { order: "" },
-        { type: "" },
-        { yearFrom: "" },
-        { yearTo: "" },
-        { keyword: "" },
-      ],
+      filterFilms: [],
+
+      order: "",
+      type: "",
+      yearFrom: "",
+      yearTo: "",
+      keyword: "",
     };
   },
   methods: {
+    // filter() {
+    //   this.$emit("filter", this.filters);
+    // },
     filter() {
-      this.$emit("filter", this.filters);
-      console.log(this.filters);
+      axios
+        .get(
+          "https://kinopoiskapiunofficial.tech/api/v2.2/films?order=" +
+            this.order,
+
+          {
+            method: "GET",
+            headers: { "X-API-KEY": "cd590928-7379-47a9-a2c1-e1be008d72f1" },
+          }
+        )
+        .then((response) => (this.filterFilms = response.data.items))
+        .then(this.$emit("filter", this.filterFilms))
+        .then(console.log(this.filterFilms));
+
+      // .then(this.$emit("filter", this.filterFilms))
+      // .then(console.log(this.filterFilms));
     },
   },
 };
@@ -57,6 +75,6 @@ export default {
 <style>
 .labelText {
   font-size: 15px;
-  color: black;
+  color: white;
 }
 </style>
