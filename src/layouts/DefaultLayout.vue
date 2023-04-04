@@ -1,19 +1,13 @@
 <template>
   <header class="header">
-    <h2 class="title">BOBI</h2>
+    <a href="/"> <h2 class="title">BOBI</h2></a>
+
     <div class="nav">
       <div class="nav__items">
-        <button class="nav__item btn">Вход</button>
-        <button class="nav__item btn">Регистрация</button>
-      </div>
-      <div class="nav__serch">
-        <input
-          type="text"
-          class="nav-serch__input"
-          placeholder="поиск..."
-          v-model="serchMovies"
-        />
-        <button @click="serch" class="nav-serch__btn btn">Поиск</button>
+        <router-link class="nav__item" to="/login">Войти</router-link>
+        <router-link class="nav__item" to="/login"
+          >Зарегистрировться</router-link
+        >
       </div>
     </div>
   </header>
@@ -36,8 +30,11 @@ export default {
   justify-content: space-between;
   background-color: rgb(8, 8, 8);
   padding: 5px 10px;
+  opacity: 0.9;
 }
 .title {
+  cursor: pointer;
+  color: white;
 }
 .nav {
   display: flex;
@@ -62,32 +59,17 @@ export default {
       color: rgb(167, 158, 158);
     }
   }
-
-  &__serch {
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-  }
 }
-.nav-serch {
-  &__input {
-    padding: 4px 7px;
-    border: none;
-    outline: none;
-    color: white;
-    border-radius: 3px;
-    background-color: #222222;
-  }
+// .nav-serch {
+//   &__btn {
+//     background-color: #222222;
+//     padding: 7px 10px;
+//     border-radius: 3px;
 
-  &__btn {
-    background-color: #222222;
-    padding: 7px 10px;
-    border-radius: 3px;
-
-    cursor: pointer;
-    &:hover {
-      background-color: #cec7c7;
-    }
-  }
-}
+//     cursor: pointer;
+//     &:hover {
+//       background-color: #cec7c7;
+//     }
+//   }
+// }
 </style>

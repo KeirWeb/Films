@@ -1,8 +1,10 @@
 <template>
   <div class="app">
-    <component :is="layout">
-      <router-view />
-    </component>
+    <div class="container">
+      <component :is="layout">
+        <router-view />
+      </component>
+    </div>
   </div>
 </template>
 
@@ -34,13 +36,28 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+}
+/* .img {
+  overflow-clip-margin: content-box;
+  overflow: clip;
+  width: 200px;
+  aspect-ratio: auto 200 / 300;
+  height: 300px;
+} */
 .app {
   background-image: url(@/assets/bodyBg.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  min-height: 1000px;
+  min-height: 100vh;
   color: white;
   font-family: "Open Sans", sans-serif;
+}
+.container {
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>

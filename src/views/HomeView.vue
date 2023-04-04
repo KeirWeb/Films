@@ -1,22 +1,24 @@
 <template>
-  <div class="container">
-    <body class="body">
-      <my-filter @filter="filter" />
-      <my-card :listFilms="listFilms" />
-    </body>
-    <footer class="footer"></footer>
-  </div>
+  <body class="body">
+    <my-filter @filter="filter" />
+
+    <my-cards :listFilms="listFilms" />
+    <my-pagination @pagination="pagination" />
+  </body>
+  <footer class="footer"></footer>
 </template>
 
 <script>
 import axios from "axios";
-import MyCard from "@/components/MyCard.vue";
+import MyCards from "@/components/MyCards.vue";
 import MyFilter from "@/components/MyFilter.vue";
+import MyPagination from "@/components/MyPagination.vue";
 
 export default {
   components: {
-    MyCard,
+    MyCards,
     MyFilter,
+    MyPagination,
   },
   data() {
     return {
@@ -27,7 +29,23 @@ export default {
       listFilms: [],
     };
   },
+
   methods: {
+    pagination(page) {
+      console.log("test");
+
+      axios
+        .get(
+          "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=" +
+            page,
+          {
+            method: "GET",
+            headers: { "X-API-KEY": "cd590928-7379-47a9-a2c1-e1be008d72f1" },
+          }
+        )
+        .then((response) => (this.listFilms = response.data.films))
+        .then((response) => console.log(response));
+    },
     filter(filterFilms) {
       console.log(filterFilms);
       this.listFilms = filterFilms;
@@ -59,84 +77,11 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-a {
-  text-decoration: none;
-}
-img {
-  width: 200px;
-  aspect-ratio: auto 200 / 300;
-  height: 300px;
-}
-.btn {
-  border: none;
-}
-.container {
-  padding: 20px;
-}
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: rgb(8, 8, 8);
-  padding: 5px 10px;
-}
-.title {
-}
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  column-gap: 25px;
-  &__items {
-    display: flex;
-    flex-direction: row;
-    column-gap: 20px;
-  }
-
-  &__item {
-    list-style-type: none;
-    border: none;
-    background-color: inherit;
-    cursor: pointer;
-    font-size: 13px;
-    &:hover {
-      color: rgb(167, 158, 158);
-    }
-  }
-
-  &__serch {
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-  }
-}
-.nav-serch {
-  &__input {
-    padding: 4px 7px;
-    border: none;
-    outline: none;
-    color: white;
-    border-radius: 3px;
-    background-color: #222222;
-  }
-
-  &__btn {
-    color: white;
-    background-color: #222222;
-    padding: 7px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-    &:hover {
-      background-color: #cec7c7;
-    }
-  }
-}
+<style lang="scss" scoped>
 .body {
-}
-.filter {
-  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .footer {

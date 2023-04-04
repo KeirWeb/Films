@@ -1,9 +1,9 @@
 <template>
   <div class="movies">
-    <div class="movies__item" v-for="film in listFilms" :key="film.id">
-      <router-link :to="`/film/${film.id}`">
+    <div class="movies__item" v-for="film in listFilms" :key="film.filmId">
+      <a @click="$router.push(`/${film.filmId}`)">
         <h3 class="item__title">{{ film.nameRu }}</h3>
-      </router-link>
+      </a>
 
       <div class="item__body">
         <div class="item__poster">
@@ -46,6 +46,9 @@
 
 <script>
 export default {
+  data() {
+    return {};
+  },
   props: {
     listFilms: {
       type: Array,
@@ -56,6 +59,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+img {
+  width: 200px;
+  aspect-ratio: auto 200 / 300;
+  height: 300px;
+}
 .movies {
   display: flex;
   flex-direction: column;
@@ -64,6 +72,7 @@ export default {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
   &__item {
     border-bottom: 1.5px solid #857d7d;
   }
@@ -72,6 +81,7 @@ export default {
   &__title {
     padding: 20px 0px;
     color: white;
+    cursor: pointer;
   }
 
   &__body {
